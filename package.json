@@ -2,12 +2,13 @@
   "name": "nuxt-app",
   "private": true,
   "scripts": {
-    "start": "nuxt dev",
+    "start": "npm run dev",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy": "npm run generate"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
