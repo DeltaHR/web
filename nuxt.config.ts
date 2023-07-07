@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["nuxt-vuefire"],
   vuefire: {
+    auth: true,
     config: {
       apiKey: "AIzaSyBMKBwPbOIX18UZ53B622VgLk4aRmBl1q0",
       authDomain: "calllogadas2-9a345.firebaseapp.com",
