@@ -10,7 +10,7 @@ const calls = useCollection(query(collection(db, "call_logs"), limit(100)));
 <template>
   <ul>
     <li>{{ user }}</li>
-    <li v-for="call in calls" :key="call.id">
+    <li v-for="call in calls" :key="call.deviceName">
       <span>{{ call.duration }}</span>
       <span>{{ call.type }}</span>
       <span>{{ call.date }}</span>
