@@ -1,13 +1,10 @@
 <script setup>
-import { doc, getDoc, collection } from "firebase/firestore";
-import { useDocument, useFirestore } from "vuefire";
+import { collection, query, limit } from "firebase/firestore";
+import { useFirestore } from "vuefire";
 const user = useCurrentUser();
 const db = useFirestore();
 // automatically waits for the data to be loaded on the server
-const calls = useCollection(
-  collection(db, "call_logs"),
-  where(documentId(), "in", 10)
-);
+const calls = useCollection(query(collection(db, "call_logs"), limit(100)));
 </script>
 
 <template>
