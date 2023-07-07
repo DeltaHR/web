@@ -16,13 +16,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: "pnpm"
+          cache: "npm"
 
       - name: Install dependency in theme
-        run: pnpm i && npm run deploy
+        run: npm Install
 
       - name: Deploy app
-        run: pnpm run deploy
+        run: npm run deploy
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
