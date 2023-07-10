@@ -8,6 +8,12 @@ dependencies:
   '@firebase/app-types':
     specifier: ^0.9.0
     version: 0.9.0
+  datatables.net:
+    specifier: ^1.13.5
+    version: 1.13.5
+  datatables.net-vue3:
+    specifier: ^2.1.1
+    version: 2.1.1(datatables.net@1.13.5)(jquery@3.7.0)(vue@3.3.4)
   firebase:
     specifier: ^9.0.0
     version: 9.0.0
@@ -3170,6 +3176,48 @@ packages:
     engines: {node: '>= 12'}
     dev: true
 
+  /datatables.net-dt@1.13.5:
+    resolution: {integrity: sha512-6cIFRd/ujr0AfHPLykJNAs/6FLgDygWgYoV4d7trK2+l4NLRCrlqumtA6pm+7xF5bBaIcD0DIT8W97TIUg/PBA==}
+    dependencies:
+      datatables.net: 1.13.5
+      jquery: 3.7.0
+    dev: false
+
+  /datatables.net-responsive-dt@2.5.0:
+    resolution: {integrity: sha512-u0oHqG1LLrFj+cBVYpyOO03nECUJJim4EovKhdQtB2g8X0fbH7jWvLAOdDFvyIzktCYWScObqR8uUEtm6J9O6Q==}
+    dependencies:
+      datatables.net-dt: 1.13.5
+      datatables.net-responsive: 2.5.0
+      jquery: 3.7.0
+    dev: false
+
+  /datatables.net-responsive@2.5.0:
+    resolution: {integrity: sha512-GL7DFiRl5qqrp5ql54Psz92xTGPR0rMcrO3hzNxMfvcfpRGL5zFNTvMpTUh59Erm6u1+KoX+j+Ig1ZD3r0iFsA==}
+    dependencies:
+      datatables.net: 1.13.5
+      jquery: 3.7.0
+    dev: false
+
+  /datatables.net-vue3@2.1.1(datatables.net@1.13.5)(jquery@3.7.0)(vue@3.3.4):
+    resolution: {integrity: sha512-OrxzWVFb52dy3fNB6AUumVuBqVS6052a1VjIT+mVQFrzBwNr9zNSVSSRnhFnLA+BZQhTuxyfap42BFyLyCQJbw==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      datatables.net: ^1.13.1
+      jquery: ^3.6.0
+      vue: ^3.0.5
+    dependencies:
+      datatables.net: 1.13.5
+      datatables.net-responsive-dt: 2.5.0
+      jquery: 3.7.0
+      vue: 3.3.4
+    dev: false
+
+  /datatables.net@1.13.5:
+    resolution: {integrity: sha512-XoCQHkUM5MwbC3Wx7WpVvt4i880J8pIFDA9HIKD4GhvtalryBfmdd+bZvrc/rEbraZS7U4eR2k8/wFY0NeHVqQ==}
+    dependencies:
+      jquery: 3.7.0
+    dev: false
+
   /debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -4668,6 +4716,10 @@ packages:
 
   /jose@4.14.4:
     resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
+    dev: false
+
+  /jquery@3.7.0:
+    resolution: {integrity: sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==}
     dev: false
 
   /js-tokens@4.0.0:
