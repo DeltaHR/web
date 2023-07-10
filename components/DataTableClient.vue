@@ -21,7 +21,7 @@
   const db = useFirestore();
   DataTable.use(DataTablesLib);
   // automatically waits for the data to be loaded on the server
-  const calls = useCollection(query(collection(db, "call_logs"), limit(3)));
+  const calls = useCollection(query(collection(db, "call_logs"), limit(1000)));
 
   const computedCalls = computed(()=>{
     let formattedData = []
@@ -39,12 +39,6 @@
     }
     return formattedData
   })
-  let letCallsFormat = [];
-
-  const dat = [
-    [1, 2, 1, 2, 1],
-    [3, 4, 3, 4, 3],
-  ];
 </script>
 
 <style>
