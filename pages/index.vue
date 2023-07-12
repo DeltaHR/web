@@ -3,7 +3,3 @@
     <DataTable />
   </div>
 </template>
-
-<script setup>
-const user = useCurrentUser();
-</script>
