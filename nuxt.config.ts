@@ -1,10 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
-  modules: [
-    "nuxt-vuefire",
-    '@nuxtjs/tailwindcss'
-  ],
+  modules: ["nuxt-vuefire", "@nuxtjs/tailwindcss"],
   vuefire: {
     auth: true,
     config: {
