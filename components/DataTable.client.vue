@@ -1,7 +1,7 @@
 <template>
   <div>
     <ClientOnly>
-      <DataTable v-if="calls.length > 0" :data="computedCalls" class="display" :options="{ select: true }">
+      <DataTable :data="computedCalls" class="display" :options="{ select: true }">
         <thead>
           <tr>
             <!-- <th v-for="key,index in Object.keys(calls[0]).sort()" :key="index">
@@ -24,7 +24,6 @@
   DataTable.use(DataTablesLib);
   // automatically waits for the data to be loaded on the server
   // const calls = useCollection(query(collection(db, "call_logs"), limit(1000)));
-
   const computedCalls = computed(()=>{
     let formattedData = [[1,2,3,4,5],[6,7,8,9,10]]
     // let formattedData = []

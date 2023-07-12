@@ -1,9 +1,9 @@
-<script setup></script>
-
 <template>
   <div>
-    <ClientOnly>
-      <DataTableClient></DataTableClient>
-    </ClientOnly>
+    <DataTable />
   </div>
 </template>
+
+<script setup>
+
+</script>
