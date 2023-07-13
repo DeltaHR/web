@@ -1,0 +1,28 @@
+<div class="loading-screen">
+  <img class="loader-image" height="80" width="200" src="/images/deltaHR-logo.png" />
+</div>
+<style>
+  html,body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .loading-screen {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loader-image {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    object-fit: contain;
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
+</style>
