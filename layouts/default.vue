@@ -1,13 +1,8 @@
 <template>
     <div>
-        <div v-if="!user" class="h-screen w-screen flex justify-center items-center">
-            <div>
-                <p>
-                    Await for login...
-                </p>
-            </div>
-        </div>
+        <LayoutLoadingScreen v-if="!user" />
         <div v-else>
+            <LayoutNavbar class="mb-10" />
             <slot />
         </div>
     </div>
