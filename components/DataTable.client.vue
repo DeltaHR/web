@@ -1,23 +1,14 @@
 <template>
-  <div>
-    <ClientOnly>
-      <DataTable
-        :data="computedCalls"
-        class="display"
-        :options="{ select: true }"
-      >
-        <thead>
-          <tr>
-            <!-- <th v-for="key,index in Object.keys(calls[0]).sort()" :key="index">
-            {{ key }}</th> -->
-            <th v-for="(key, index) in ['a', 'b', 'c', 'd', 'e']" :key="index">
-              {{ key }}
-            </th>
-          </tr>
-        </thead>
-      </DataTable>
-    </ClientOnly>
-  </div>
+  <DataTable :data="computedCalls" class="display" :options="{ select: true }">
+    <thead>
+      <tr>
+        <!-- <th v-for="key,index in Object.keys(calls[0]).sort()" :key="index">
+        {{ key }}</th> -->
+        <th v-for="key,index in ['a','b','c','d','e']" :key="index">
+        {{ key }}</th>
+      </tr>
+    </thead>
+  </DataTable>
 </template>
 
 <script setup>
