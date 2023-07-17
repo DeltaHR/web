@@ -1,5 +1,5 @@
 <template>
-  <h2 v-if="title" class="text-2xl md:text-3xl mb-5 md:mb-8 text-gray-700 font-semibold border-b border-blue-950/10 pb-2">{{ title }}</h2>
+  <h2 v-if="title" class=" sticky top-12 z-20 text-2xl md:text-3xl mb-5 md:mb-8 text-gray-700 font-semibold border-b border-blue-950/10 py-2 bg-white">{{ title }}</h2>
   <DataTable v-if="computedCalls && computedCols" :columns="computedCols" class="display">
     <tbody>
       <tr v-for="row,index in computedCalls" :key="index"
