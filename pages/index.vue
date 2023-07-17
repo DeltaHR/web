@@ -1,9 +1,9 @@
 <template>
   <div class="container mx-auto px-10 mb-20">
-    <TableCalls :data="data" :show-unanswered="true" :pending="pending" />
+    <TableCalls :data="data" :title="'Nieodebrane'" :show-unanswered="true" :pending="pending" />
   </div>
   <div class="container mx-auto px-10 mb-20">
-    <TableCalls :data="data" :pending="pending" />
+    <TableCalls :data="data" :title="'Wszystkie połączenia'" :pending="pending" />
   </div>
 </template>
 

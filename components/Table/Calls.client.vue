@@ -1,10 +1,14 @@
 <template>
+  <h2 v-if="title" class="text-2xl md:text-3xl mb-5 md:mb-8 text-gray-700 font-semibold border-b border-blue-950/10 pb-2">{{ title }}</h2>
   <DataTable v-if="computedCalls && computedCols" :columns="computedCols" class="display">
     <tbody>
       <tr v-for="row,index in computedCalls" :key="index"
       :class="[index % 2 != 0 ? 'odd': 'even']">
         <td v-for="(item,key) in row" class="h-6">
           <TableItemStatus v-if="key == 'status'" :value="(item as CallFormatted['status'])"/>
+          <div v-else-if="key == 'date'">
+            {{ item.toLocaleString() }}
+          </div>
           <div v-else>
             {{ item }}
           </div>
@@ -13,7 +17,7 @@
     </tbody>
   </DataTable>
 
-  <table v-else-if="pending" class="display w-full dataTable pt-20 max-h-screen overflow-hidden">
+  <table v-else-if="pending" class="display w-full dataTable pt-10 max-h-screen overflow-hidden">
     <tbody>
       <tr v-for="index in 5" :key="index"
       class="animate-pulse pointer-events-none"
@@ -34,6 +38,7 @@ import DataTablesLib from "datatables.net";
 DataTable.use(DataTablesLib);
 
 const props = withDefaults(defineProps<{
+  title?: String
   data: Call[] | null,
   showUnanswered?: boolean
   pending: boolean,
