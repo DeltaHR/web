@@ -34,33 +34,30 @@
 
 import DataTable from "datatables.net-vue3";
 import DataTablesLib from "datatables.net";
+import { useCallsStore } from "~/stores/callsStore";
+
 // const db = useFirestore();
+// automatically waits for the data to be loaded on the server
+// const calls = useCollection(query(collection(db, "call_logs"), limit(1000)));
+
 DataTable.use(DataTablesLib);
 
 const props = withDefaults(defineProps<{
   title?: String
-  data: Call[] | null,
   showUnanswered?: boolean
   pending: boolean,
 }>(),{
   showUnanswered: false,
   pending:true
 })
-// automatically waits for the data to be loaded on the server
-// const calls = useCollection(query(collection(db, "call_logs"), limit(1000)));
+
+const callsStore = useCallsStore()
 
 const computedCalls = computed(() => {
-  if (!props.data) {
-    return null
-  }
-  
-  const calls = formatCalls(props.data)
-
   if (props.showUnanswered) {
-    return filterUnanswered(calls)
+    return filterUnanswered(callsStore.getCalls)
   }
-
-  return calls
+  return callsStore.getCalls
 });
 
 const computedCols = computed(()=>{

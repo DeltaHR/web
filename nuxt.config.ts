@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   ssr: false,
   modules: [
     "nuxt-vuefire",
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt'
   ],
   vuefire: {
     auth: true,

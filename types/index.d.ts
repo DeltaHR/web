@@ -8,10 +8,12 @@ declare global {
     date: string;
   }
 
-  interface CallFormatted {
-    tel: string;
-    status: "odebrane" | "nieodebrane";
+  interface CallFormatted extends Call {
     type: "przychodzące" | "wychodzące";
     date: Date;
+  }
+
+  interface CallStoreI {
+    calls: CallFormatted[]
   }
 }

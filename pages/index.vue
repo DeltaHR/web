@@ -1,13 +1,16 @@
 <template>
   <div class="container mx-auto px-10 mb-20">
-    <TableCalls :data="data" :title="'Nieodebrane'" :show-unanswered="true" :pending="pending" />
+    <TableCalls :title="'Nieodebrane'" :show-unanswered="true" :pending="pending" />
   </div>
   <div class="container mx-auto px-10 mb-20">
-    <TableCalls :data="data" :title="'Wszystkie połączenia'" :pending="pending" />
+    <TableCalls :title="'Wszystkie połączenia'" :pending="pending" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { useCallsStore } from "~/stores/callsStore";
+
+const callsStore = useCallsStore()
 
 const delay = async () => {
   // temporary fake delay
@@ -18,8 +21,12 @@ const delay = async () => {
 
 const { data, pending, error, refresh } = useAsyncData<Call[]>(
   async () => {
-  await delay();
-    return $fetch('./data.example.json');
+    await delay();
+
+    const calls = await $fetch('./data.example.json') as Call[];
+    callsStore.addCalls(calls)
+
+    return calls
   },{
     server: false
   }
