@@ -1,7 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
-  modules: ["nuxt-vuefire", "@nuxtjs/tailwindcss"],
+  modules: [
+    "nuxt-vuefire",
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt'
+  ],
   vuefire: {
     auth: true,
     config: {
@@ -15,4 +19,9 @@ export default defineNuxtConfig({
       appId: "1:466886593574:web:f0f49becbd2e4e5a2d6ae7",
     },
   },
+  typescript:{
+    tsConfig: {
+      "include": [ "types/*.d.ts" ]
+    }
+  }
 });

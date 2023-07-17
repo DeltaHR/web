@@ -1,0 +1,32 @@
+[
+  {
+    "tel": 123,
+    "status": "nieodebrane",
+    "type": "incoming",
+    "date": "2023-07-16T18:58:50.166Z"
+  },
+  {
+    "tel": 123,
+    "status": "odebrane",
+    "type": "incoming",
+    "date": "2023-07-16T19:23:50.166Z"
+  },
+  {
+    "tel": 123,
+    "status": "nieodebrane",
+    "type": "incoming",
+    "date": "2023-07-16T19:59:50.166Z"
+  },
+  {
+    "tel": 123,
+    "status": "odebrane",
+    "type": "outgoing",
+    "date": "2023-07-16T20:30:50.166Z"
+  },
+  {
+    "tel": 123,
+    "status": "nieodebrane",
+    "type": "incoming",
+    "date": "2023-07-16T21:22:50.166Z"
+  }
+]
