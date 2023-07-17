@@ -13,9 +13,9 @@
     </tbody>
   </DataTable>
 
-  <table v-else class="display w-full dataTable pt-20 max-h-screen overflow-hidden">
+  <table v-else-if="pending" class="display w-full dataTable pt-20 max-h-screen overflow-hidden">
     <tbody>
-      <tr v-for="index in 10" :key="index"
+      <tr v-for="index in 5" :key="index"
       class="animate-pulse pointer-events-none"
       :class="[index % 2 != 0 ? 'odd': 'even']"
       :style="{'animation-delay': `${index * 100}ms`}">
@@ -34,28 +34,32 @@ import DataTablesLib from "datatables.net";
 DataTable.use(DataTablesLib);
 
 const props = withDefaults(defineProps<{
-  data: Call[],
+  data: Call[] | null,
   showUnanswered?: boolean
+  pending: boolean,
 }>(),{
-  showUnanswered: false
+  showUnanswered: false,
+  pending:true
 })
 // automatically waits for the data to be loaded on the server
 // const calls = useCollection(query(collection(db, "call_logs"), limit(1000)));
 
 const computedCalls = computed(() => {
-  if (props.data) {
-    const calls = formatCalls(props.data)
-
-    if (props.showUnanswered) {
-      return filterUnanswered(calls)
-    }
-
-    return calls
+  if (!props.data) {
+    return null
   }
+  
+  const calls = formatCalls(props.data)
+
+  if (props.showUnanswered) {
+    return filterUnanswered(calls)
+  }
+
+  return calls
 });
 
 const computedCols = computed(()=>{
-  if (computedCalls.value) {
+  if (computedCalls.value && computedCalls.value.length > 0) {
     return Object.keys(computedCalls.value[0]).map((key)=>{
       return {
         data: key,

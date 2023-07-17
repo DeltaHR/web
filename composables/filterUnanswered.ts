@@ -1,16 +1,19 @@
 export default function (data:CallFormatted[]) :CallFormatted[] {
     let filteredArray: CallFormatted[] = []
     data.sort((a,b) => {
-        a.date - b.date
+        return b.date.getTime() - a.date.getTime()
     })
 
     let numbers = new Set(Object.values(data).map(call => call.tel))
 
     for (const number of numbers) {
-        const unanswered = data.find(call => {
-            return call.tel === number && call.status === 'nieodebrane' 
+        const latest = data.find(call => {
+            return call.tel === number 
         })
-        filteredArray.push(unanswered)
+
+        if (latest?.status == 'nieodebrane') {
+            filteredArray.push(latest)
+        }
     }
 
 

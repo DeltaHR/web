@@ -1,15 +1,16 @@
 <template>
   <div class="container mx-auto px-10 mb-20">
-    <TableMain :data="data" :show-unanswered="true" />
+    <TableCalls :data="data" :show-unanswered="true" :pending="pending" />
   </div>
   <div class="container mx-auto px-10 mb-20">
-    <TableMain :data="data" />
+    <TableCalls :data="data" :pending="pending" />
   </div>
 </template>
 
 <script setup lang="ts">
 
 const delay = async () => {
+  // temporary fake delay
   return new Promise(resolve=>
     setTimeout(()=>resolve(true),1000)
   )
