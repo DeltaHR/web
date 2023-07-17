@@ -18,4 +18,9 @@ export default defineNuxtConfig({
       appId: "1:466886593574:web:f0f49becbd2e4e5a2d6ae7",
     },
   },
+  typescript:{
+    tsConfig: {
+      "include": [ "types/*.d.ts" ]
+    }
+  }
 });
