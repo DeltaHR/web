@@ -4,13 +4,13 @@ export default function (data: CallFormatted[]): CallFormatted[] {
     return b.date.getTime() - a.date.getTime();
   });
 
-  let numbers = new Set(Object.values(data).map((call) => call.tel));
+  let numbers = new Set(Object.values(data).map((call) => call.number));
 
   for (const number of numbers) {
     const latest = data.find((call) => {
       return call.number === number;
     });
-
+    console.log(latest?.type);
     if (latest?.type == "nieodebrane") {
       filteredArray.push(latest);
     }
