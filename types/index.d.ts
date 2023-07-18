@@ -11,7 +11,7 @@ declare global {
   }
 
   interface CallFormatted extends Call {
-    type: "przychodzące" | "wychodzące" | "nieznane";
+    type: "przychodzące" | "wychodzące" | "nieodebrane" | "nieznane";
     date: Date;
   }
 
@@ -19,15 +19,3 @@ declare global {
     calls: CallFormatted[];
   }
 }
-/*
-case CallLog.Calls.INCOMING_TYPE:
-  callTypeString = 1;
-  break;
-case CallLog.Calls.OUTGOING_TYPE:
-  callTypeString = 2;
-  break;
-case CallLog.Calls.MISSED_TYPE:
-  callTypeString = 3;
-case default:
-  callTypeString = 4;
-  */

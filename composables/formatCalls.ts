@@ -11,6 +11,8 @@ export default function (data: Call[]): CallFormatted[] {
           ? "przychodzące"
           : call.type == 2
           ? "wychodzące"
+          : call.type == 3
+          ? "nieodebrane"
           : "nieznane",
       date: call.date.toDate(),
     };
