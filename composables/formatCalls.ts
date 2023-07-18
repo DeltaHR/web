@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore"
+
 export default function (data:Call[]) :CallFormatted[] {
     let formattedData: CallFormatted[] = []
     data.forEach((call)=>{
@@ -5,7 +7,7 @@ export default function (data:Call[]) :CallFormatted[] {
         tel: call.tel,
         status: call.status,
         type: call.type == "incoming" ? 'przychodzące':'wychodzące',
-        date: new Date(call.date)
+        date: call.date.toDate()
       }
       formattedData.push(formattedCall)
     })
