@@ -5,6 +5,7 @@ export { Call, CallFormatted };
 declare global {
   interface Call {
     id: string;
+    deviceName: string;
     number: number;
     type: 1 | 2 | 3 | 4;
     date: Timestamp;
