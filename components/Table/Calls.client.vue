@@ -1,6 +1,6 @@
 <template>
   <h2 v-if="title" class=" sticky top-12 z-20 text-2xl md:text-3xl mb-5 md:mb-8 text-gray-700 font-semibold border-b border-blue-950/10 py-2 bg-white">{{ title }}</h2>
-  <DataTable v-if="computedCalls && computedCols" :columns="computedCols" class="display">
+  <DataTable v-if="computedCalls && computedCols" :columns="computedCols" :options="{lengthMenu: lengthMenu}" class="display">
     <tbody>
       <tr v-for="row,index in computedCalls" :key="index"
       :class="[index % 2 != 0 ? 'odd': 'even']">
@@ -36,19 +36,17 @@ import DataTable from "datatables.net-vue3";
 import DataTablesLib from "datatables.net";
 import { useCallsStore } from "~/stores/callsStore";
 
-// const db = useFirestore();
-// automatically waits for the data to be loaded on the server
-// const calls = useCollection(query(collection(db, "call_logs"), limit(1000)));
-
 DataTable.use(DataTablesLib);
 
 const props = withDefaults(defineProps<{
   title?: String
   showUnanswered?: boolean
   pending: boolean,
+  lengthMenu?: number[],
 }>(),{
   showUnanswered: false,
-  pending:true
+  pending:true,
+  lengthMenu: [10,25,50,100],
 })
 
 const callsStore = useCallsStore()
