@@ -1,6 +1,19 @@
 <template>
   <h2 v-if="title" class=" sticky top-12 z-20 text-2xl md:text-3xl mb-5 md:mb-8 text-gray-700 font-semibold border-b border-blue-950/10 py-2 bg-white">{{ title }}</h2>
-  <DataTable v-if="computedCalls && computedCols" :columns="computedCols" :options="{lengthMenu: lengthMenu}" class="display">
+  
+  <table v-if="pending" class="display w-full dataTable pt-10 max-h-screen overflow-hidden">
+    <tbody>
+      <tr v-for="index in 5" :key="index"
+      class="animate-pulse pointer-events-none"
+      :class="[index % 2 != 0 ? 'odd': 'even']"
+      :style="{'animation-delay': `${index * 100}ms`}">
+        <td class="h-6">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <DataTable v-else-if="!showUnanswered && computedCalls && computedCols" :columns="computedCols" :options="{lengthMenu: lengthMenu}" class="display">
     <tbody>
       <tr v-for="row,index in computedCalls" :key="index"
       :class="[index % 2 != 0 ? 'odd': 'even']">
@@ -16,19 +29,12 @@
       </tr>
     </tbody>
   </DataTable>
+  
+  <DataTable v-else-if="showUnanswered && computedCalls && computedCols" :columns="computedCols" :data="computedCalls" :options="{lengthMenu: lengthMenu}" class="display">
+  </DataTable>
 
-  <table v-else-if="pending" class="display w-full dataTable pt-10 max-h-screen overflow-hidden">
-    <tbody>
-      <tr v-for="index in 5" :key="index"
-      class="animate-pulse pointer-events-none"
-      :class="[index % 2 != 0 ? 'odd': 'even']"
-      :style="{'animation-delay': `${index * 100}ms`}">
-        <td class="h-6">
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </template>
+
 
 <script setup lang="ts">
 
@@ -63,7 +69,8 @@ const computedCols = computed(()=>{
     return Object.keys(computedCalls.value[0]).map((key)=>{
       return {
         data: key,
-        title:key
+        title:key,
+        visible: key != 'id'
       } 
     })
   }

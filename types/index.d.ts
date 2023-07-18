@@ -5,6 +5,7 @@ export { Call, CallFormatted };
 
 declare global {
   interface Call {
+    id: string,
     tel: string;
     status: "odebrane" | "nieodebrane";
     type: "incoming" | "outgoing";

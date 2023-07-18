@@ -7,8 +7,11 @@
             <div class="flex items-center gap-1.5 md:gap-5 py-2">
                 <UserInfo/>
                 <UserLogoutButton />
+                <CommonUpdateIndicator />             
             </div>
         </div>
     </div>
 </div>
 </template>
+
+
