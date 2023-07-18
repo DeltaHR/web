@@ -26,7 +26,7 @@
   <DataTable
     v-else-if="!showUnanswered && computedCalls && computedCols"
     :columns="computedCols"
-    :options="{ lengthMenu: lengthMenu, order: [[2, 'desc']] }"
+    :options="{ lengthMenu: lengthMenu, order: [[3, 'desc']] }"
     class="display"
   >
     <tbody>
@@ -55,7 +55,7 @@
     v-else-if="showUnanswered && computedCalls && computedCols"
     :columns="computedCols"
     :data="computedCalls"
-    :options="{ lengthMenu: lengthMenu, order: [[2, 'desc']] }"
+    :options="{ lengthMenu: lengthMenu, order: [[3, 'desc']] }"
     class="display"
   >
   </DataTable>
