@@ -1,5 +1,80 @@
 <template>
-    <div class="hidden md:flex flex-col w-72 h-full z-30 bg-slate-900  py-10 px-5">
+  <div
+    class="absolute md:static top-14 bottom-0 z-30 shrink-0 bg-slate-900 py-5 overflow-x-hidden transition-all duration-500"
+    :class="[isCollapsed ? 'collapsed w-14 md:w-16 md:pt-2' : 'w-[268px] md:pt-[84px]']"
+    @click.native="isCollapsed ? toggleCollapse() : null"
 
+  >
+    <div class="flex flex-col w-64 h-full px-3">
+      <div class="border-b border-slate-800 mb-5">
+        <UserInfo class="text-white transition-all duration-500" :class="[isCollapsed ? 'mb-5 md:mb-2' : 'mb-5']" />
+      </div>
+      <div class="border-b border-slate-800 text-slate-200">
+        <div class="flex">
+          <svg class="shrink-0 ml-1 md:ml-1.5 mr-3 md:mr-[26px] fill-slate-200" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"
+            />
+          </svg>
+          <h3 class="collapsed-hidden text-base md:text-lg mb-2">Zakres czasu</h3>
+        </div>
+
+        <div class="collapsed-hidden">
+            <span class="mb-1 block">od:</span>
+            <input
+              type="date"
+              class="w-full accent-slate-800 appearance-none bg-blue-400/10 hover:bg-blue-400/20 text-white p-2 rounded-md mb-5 transition duration-200"
+            />
+    
+            <span class="mb-1 block">do:</span>
+            <input type="date" class="w-full accent-slate-800 appearance-none bg-blue-400/10 hover:bg-blue-400/20 text-white p-2 rounded-md" />
+        </div>
+      </div>
+      <div class="collapsed-hidden mt-auto border-t border-slate-800 pt-5 mb-5">
+        <UserLogoutButton class="text-white" />
+      </div>
+      <div class="border-t border-slate-800 pt-5">
+        <button
+          class="ml-auto block group px-1 md:px-2 transition-transform duration-500"
+          @click.stop="toggleCollapse"
+          :class="{ '-translate-x-[202px] md:-translate-x-[195px]': isCollapsed }"
+        >
+          <svg
+            class="w-5 h-5 fill-slate-200 transition duration-500 group-hover:fill-blue-400"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            :class="{ '-rotate-180': isCollapsed }"
+          >
+            <path
+              d="M706.2 958.6c-15 0-30.1-5.7-41.5-17.2L277.1 553.8c-22.9-22.9-22.9-60.1 0-83L664.7 83.2c22.9-22.9 60.1-22.9 83 0s22.9 60.1 0 83l-346 346 346 346c22.9 22.9 22.9 60.1 0 83-11.4 11.6-26.5 17.4-41.5 17.4z"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
+  </div>
 </template>
+
+<script setup lang="ts">
+const isCollapsed = ref(false);
+
+onMounted(()=>{
+    if (window.innerWidth < 768) {
+        isCollapsed.value = true
+    }
+})
+
+function toggleCollapse() {
+  isCollapsed.value = !isCollapsed.value;
+}
+</script>
+<style scoped>
+:deep(.collapsed-hidden) {
+  @apply transition duration-500;
+}
+.collapsed:deep(.collapsed-hidden) {
+  @apply opacity-0 pointer-events-none;
+}
+</style>

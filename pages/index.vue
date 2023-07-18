@@ -1,8 +1,8 @@
 <template>
-  <div class="container mx-auto px-5 md:px-10 mb-20">
+  <div class="w-full container mx-auto px-5 md:px-10 mb-20">
     <TableCalls :title="'Nieodebrane'" :show-unanswered="true" :pending="isPending" :length-menu="[100,50,25]" />
   </div>
-  <div class="container mx-auto px-5 md:px-10 mb-20">
+  <div class="w-full container mx-auto px-5 md:px-10 mb-20">
     <TableCalls :title="'Wszystkie połączenia'" :pending="isPending" />
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <Transition>
-        <div v-if="updateIndicator" class="p-4 flex items-center gap-1">
+        <div v-if="updateIndicator" class="flex items-center gap-1">
             <p class="text-slate-800">
                 Zaktualizowano Nieodebrane
             </p>
