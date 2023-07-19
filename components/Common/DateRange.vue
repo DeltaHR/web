@@ -11,18 +11,38 @@
     </div>
 
     <div class="collapsed-hidden">
-        <span class="mb-1 block">od:</span>
-        <input
-          type="date"
-          class="w-full accent-slate-800 appearance-none bg-blue-400/10 hover:bg-blue-400/20 text-white p-2 rounded-md mb-5 transition duration-200"
-        />
-        <span class="mb-1 block">do:</span>
-        <input type="date" class="w-full accent-slate-800 appearance-none bg-blue-400/10 hover:bg-blue-400/20 text-white p-2 rounded-md" />
+        <VueDatePicker v-model="dateRange" :clearable="false" range :partial-range="false" dark  />
     </div>
-    <div class="collapsed-hidden border-b border-slate-800"></div>
+    <div class="collapsed-hidden border-b border-slate-800 mt-5"></div>
   </div>
 </template>
 
 <script setup lang="ts">
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+import { useCallsStore } from '~/stores/callsStore';
+import { storeToRefs } from 'pinia'
+
+const {dateRange} = storeToRefs(useCallsStore())
 
 </script>
+
+<style>
+
+.dp__input,
+.dp__arrow_top,
+.dp__menu{
+  --dp-border-color: rgb(75, 92, 117);
+  --dp-menu-border-color: rgb(81, 94, 111);
+  --dp-hover-color:rgb(55, 65, 77);
+  @apply bg-slate-800/70 backdrop-blur-md
+}
+
+.dp__action_row .dp__selection_preview{
+  @apply overflow-visible w-1/2 shrink text-clip mb-2 whitespace-normal
+}
+
+.dp__action_button{
+  @apply h-8
+}
+</style>

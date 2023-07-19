@@ -1,11 +1,11 @@
 <template>
   <div
     class="absolute md:static top-14 bottom-0 z-30 shrink-0 bg-slate-900 py-5 overflow-x-hidden transition-all duration-500"
-    :class="[isCollapsed ? 'collapsed w-14 md:w-16 md:pt-2' : 'w-[268px] md:pt-[84px]']"
+    :class="[isCollapsed ? 'collapsed w-14 md:w-16 md:pt-2' : 'w-72 md:pt-[84px]']"
     @click.native="isCollapsed ? toggleCollapse() : null"
 
   >
-    <div class="flex flex-col w-64 h-full px-3">
+    <div class="flex flex-col w-72 h-full px-3">
       <div class="border-b border-slate-800 mb-5">
         <UserInfo class="text-white transition-all duration-500" :class="[isCollapsed ? 'mb-5 md:mb-2' : 'mb-5']" />
       </div>
@@ -17,7 +17,7 @@
         <button
           class="ml-auto block group px-1 md:px-2 transition-transform duration-500"
           @click.stop="toggleCollapse"
-          :class="{ '-translate-x-[202px] md:-translate-x-[195px]': isCollapsed }"
+          :class="{ '-translate-x-[235px] md:-translate-x-[225px]': isCollapsed }"
         >
           <svg
             class="w-5 h-5 fill-slate-200 transition duration-500 group-hover:fill-blue-400"

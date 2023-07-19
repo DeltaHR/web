@@ -13,15 +13,18 @@ import { collection, limit, query, where } from "firebase/firestore";
 
 const callsStore = useCallsStore()
 
-let dateEnd = new Date() 
-let dateStart = new Date('2023-07-17')
 const isPending = ref(true)
 const loadedOnce = ref(false)
 const updateIndicator = useState('autoupdate',() => false)
 
+
+const callsQuery = computed(()=>{
+  return query(callsRef,where('date','>',callsStore.dateRange[0]),where('date','<',callsStore.dateRange[1]), limit(100))
+})
+
 const db = useFirestore();
 const callsRef = collection(db, "/CallLog")
-const {data: calls, promise} = useCollection(query(callsRef,where('date','<',dateEnd), where('date','>',dateStart), limit(100)))
+const {data: calls, promise} = useCollection(callsQuery)
 
 promise.value.then(() => isPending.value = false)
 
@@ -38,7 +41,9 @@ watch(calls,(newCalls) => {
     return
   }
 
-  updateIndicator.value = true
+  if (newDocuments.length > 0) {
+    updateIndicator.value = true
+  }
   
 },{deep: true})
 

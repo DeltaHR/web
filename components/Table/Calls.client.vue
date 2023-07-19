@@ -87,9 +87,9 @@ const callsStore = useCallsStore();
 
 const computedCalls = computed(() => {
   if (props.showUnanswered) {
-    return filterUnanswered(callsStore.getCalls);
+    return filterUnanswered(callsStore.getCallsInRange);
   }
-  return callsStore.getCalls;
+  return callsStore.getCallsInRange
 });
 
 const computedCols = computed(() => {
