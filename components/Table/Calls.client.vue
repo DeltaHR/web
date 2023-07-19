@@ -26,7 +26,7 @@
   <DataTable
     v-else-if="!showUnanswered && computedCalls && computedCols"
     :columns="computedCols"
-    :options="{ lengthMenu: lengthMenu, order: [[3, 'desc']] }"
+    :options="{ lengthMenu: lengthMenu, order: [[5, 'desc']] }"
     class="display"
   >
     <tbody>
@@ -55,7 +55,7 @@
     v-else-if="showUnanswered && computedCalls && computedCols"
     :columns="computedCols"
     :data="computedCalls"
-    :options="{ lengthMenu: lengthMenu, order: [[3, 'desc']] }"
+    :options="{ lengthMenu: lengthMenu, order: [[5, 'desc']] }"
     class="display"
   >
   </DataTable>
@@ -65,6 +65,7 @@
 import DataTable from "datatables.net-vue3";
 import DataTablesLib from "datatables.net";
 import { useCallsStore } from "~/stores/callsStore";
+import translateTableKey from "~/utils/translateTableKey"
 
 DataTable.use(DataTablesLib);
 
@@ -78,7 +79,7 @@ const props = withDefaults(
   {
     showUnanswered: false,
     pending: true,
-    lengthMenu: [10, 25, 50, 100],
+    lengthMenu: [50, 100],
   }
 );
 
@@ -96,7 +97,7 @@ const computedCols = computed(() => {
     return Object.keys(computedCalls.value[0]).map((key) => {
       return {
         data: key,
-        title: key,
+        title: translateTableKey(key as keyof CallFormatted),
         visible: key != "id",
       };
     });

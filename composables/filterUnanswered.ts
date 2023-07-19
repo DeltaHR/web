@@ -10,7 +10,6 @@ export default function (data: CallFormatted[]): CallFormatted[] {
     const latest = data.find((call) => {
       return call.number === number;
     });
-    console.log(latest?.type);
     if (latest?.type == "nieodebrane") {
       filteredArray.push(latest);
     }

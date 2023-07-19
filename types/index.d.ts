@@ -8,6 +8,7 @@ declare global {
     deviceName: string;
     number: number;
     type: 1 | 2 | 3 | 4;
+    duration: number;
     date: Timestamp;
   }
 
@@ -19,4 +20,5 @@ declare global {
   interface CallStoreI {
     calls: CallFormatted[];
   }
+
 }

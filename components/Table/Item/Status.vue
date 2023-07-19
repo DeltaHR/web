@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <span v-if="value === 'odebrane'">
+    <!-- <span v-if="value === 'odebrane'">
       <svg
         width="20"
         height="20"
@@ -13,7 +13,7 @@
           fill="#0EA93A"
         />
       </svg>
-    </span>
+    </span> -->
     <span v-if="value === 'nieodebrane'">
       <svg
         width="20"
@@ -37,7 +37,7 @@
     </span>
     <span
       class="ml-3 capitalize"
-      :class="[value === 'odebrane' ? 'text-green-600' : 'text-red-600']"
+      :class="[value === 'nieodebrane' ? 'text-red-600' : 'text-black']"
       >{{ value }}</span
     >
   </div>

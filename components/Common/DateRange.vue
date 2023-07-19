@@ -1,5 +1,5 @@
 <template>
-    <div class="border-b border-slate-800 text-slate-200">
+    <div class="text-slate-200">
     <div class="flex">
       <svg class="shrink-0 ml-1 md:ml-1.5 mr-3 md:mr-[26px] fill-slate-200" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
         <path d="M0 0h24v24H0z" fill="none" />
@@ -19,6 +19,7 @@
         <span class="mb-1 block">do:</span>
         <input type="date" class="w-full accent-slate-800 appearance-none bg-blue-400/10 hover:bg-blue-400/20 text-white p-2 rounded-md" />
     </div>
+    <div class="collapsed-hidden border-b border-slate-800"></div>
   </div>
 </template>
 

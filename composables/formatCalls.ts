@@ -1,4 +1,4 @@
-import { Timestamp } from "firebase/firestore";
+import formatTime from "~/utils/formatTime";
 
 export default function (data: Call[]): CallFormatted[] {
   let formattedData: CallFormatted[] = [];
@@ -14,6 +14,8 @@ export default function (data: Call[]): CallFormatted[] {
           : call.type == 3
           ? "nieodebrane"
           : "nieznane",
+      duration: call.duration,
+      deviceName: call.deviceName,
       date: call.date.toDate(),
     };
     formattedData.push(formattedCall);
