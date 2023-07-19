@@ -19,6 +19,7 @@ declare global {
 
   interface CallStoreI {
     calls: CallFormatted[];
+    callsRaw: Call[];
     dateRange: [Date,Date]
   }
 

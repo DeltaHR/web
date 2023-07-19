@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { useCallsStore } from "~/stores/callsStore";
-import { collection, limit, query, where } from "firebase/firestore";
+import { collection, initializeFirestore, limit, query, where } from "firebase/firestore";
 
 const callsStore = useCallsStore()
 
@@ -19,7 +19,11 @@ const updateIndicator = useState('autoupdate',() => false)
 
 
 const callsQuery = computed(()=>{
-  return query(callsRef,where('date','>',callsStore.dateRange[0]),where('date','<',callsStore.dateRange[1]), limit(100))
+  return query(
+    callsRef,
+    where('date','>',callsStore.dateRange[0]),
+    where('date','<',callsStore.dateRange[1]),
+    limit(100))
 })
 
 const db = useFirestore();
