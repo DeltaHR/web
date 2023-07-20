@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { useCallsStore } from "~/stores/callsStore";
-import { collection, initializeFirestore, limit, query, where } from "firebase/firestore";
+import { collection, query, where } from "firebase/firestore";
 
 const callsStore = useCallsStore()
 
@@ -22,13 +22,13 @@ const callsQuery = computed(()=>{
   return query(
     callsRef,
     where('date','>',callsStore.dateRange[0]),
-    where('date','<',callsStore.dateRange[1]),
-    limit(100))
+    where('date','<',callsStore.dateRange[1])
+    )
 })
-
+ 
 const db = useFirestore();
 const callsRef = collection(db, "/CallLog")
-const {data: calls, promise} = useCollection(callsQuery)
+const {data: calls, promise } = useCollection(callsQuery)
 
 promise.value.then(() => isPending.value = false)
 
