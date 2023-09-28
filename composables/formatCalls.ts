@@ -1,5 +1,3 @@
-import formatTime from "~/utils/formatTime";
-
 export default function (data: Call[]): CallFormatted[] {
   let formattedData: CallFormatted[] = [];
   data.forEach((call) => {

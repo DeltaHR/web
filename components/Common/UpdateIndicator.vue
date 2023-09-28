@@ -2,7 +2,7 @@
     <Transition>
         <div v-if="updateIndicator" class="flex items-center gap-1">
             <p class="text-slate-800">
-                Zaktualizowano Nieodebrane
+                Zaktualizowano Połączenia
             </p>
             <svg class="update-icon" width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle class="stroke-slate-900/20" cx="10" cy="10" r="9.5"/>

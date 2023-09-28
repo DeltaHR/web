@@ -6,72 +6,51 @@
     {{ title }}
   </h2>
 
-  <table
-    v-if="pending"
-    class="display w-full dataTable pt-10 max-h-screen overflow-hidden"
-  >
-    <tbody>
-      <tr
-        v-for="index in 5"
-        :key="index"
-        class="animate-pulse pointer-events-none"
-        :class="[index % 2 != 0 ? 'odd' : 'even']"
-        :style="{ 'animation-delay': `${index * 100}ms` }"
-      >
-        <td class="h-6"></td>
-      </tr>
-    </tbody>
-  </table>
+  <UTable v-if="computedCalls.length == 0" :columns="defaultColsTranslated" :loading="pending">
 
-  <DataTable
-    v-else-if="!showUnanswered && computedCalls && computedCols"
-    :columns="computedCols"
-    :options="{ lengthMenu: lengthMenu, order: [[5, 'desc']] }"
-    class="display"
-  >
-    <tbody>
-      <tr
-        v-for="(row, index) in computedCalls"
-        :key="index"
-        :class="[index % 2 != 0 ? 'odd' : 'even']"
-      >
-        <td v-for="(item, key) in row" class="h-6">
-          <TableItemStatus
-            v-if="key == 'type'"
-            :value="(item as CallFormatted['type'])"
-          />
-          <div v-else-if="key == 'date'">
-            {{ item.toLocaleString() }}
-          </div>
-          <div v-else>
-            {{ item }}
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </DataTable>
+  </UTable>
 
-  <DataTable
-    v-else-if="showUnanswered && computedCalls && computedCols"
-    :columns="computedCols"
-    :data="computedCalls"
-    :options="{ lengthMenu: lengthMenu, order: [[5, 'desc']] }"
-    class="display"
-  >
-  </DataTable>
+  <div v-else>
+    <div class="flex gap-2.5 flex-wrap justify-between px-3">
+      <div class="flex items-center gap-1.5">
+        <span class="text-sm leading-5">Rows per page:</span>
+        <USelect v-model.number="length" :options="lengthMenu" class="w-20" />
+      </div>
+      <UInput v-model="q" placeholder="Szukaj..." class="w-full sm:max-w-[250px]" />
+    </div>
+    <UTable
+      :rows="displayedCalls"
+      :columns="computedCols"
+      :sort="{ column: 'date', direction: 'desc' }"
+      :loading="pending"
+      
+    >
+
+      <template #type-data="{ row }">
+        <TableItemStatus :value="(row.type)"/>
+      </template>
+      <template #duration-data="{ row }">
+        {{ formatTime(row.duration) }}
+      </template>
+      <template #date-data="{ row }">
+        {{ row.date.toLocaleString() }}
+      </template>
+
+    </UTable>
+    <div class="pt-5 flex justify-end">
+      <UPagination v-model="page" :page-count="length" :total="computedCalls.length" />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import DataTable from "datatables.net-vue3";
-import DataTablesLib from "datatables.net";
 import { useCallsStore } from "~/stores/callsStore";
 import translateTableKey from "~/utils/translateTableKey"
 
-DataTable.use(DataTablesLib);
 
 const props = withDefaults(
   defineProps<{
-    title?: String;
+    title?: string;
     showUnanswered?: boolean;
     pending: boolean;
     lengthMenu?: number[];
@@ -79,36 +58,75 @@ const props = withDefaults(
   {
     showUnanswered: false,
     pending: true,
-    lengthMenu: [50, 100],
+    lengthMenu: () => [50, 100],
   }
 );
 
+const defaultCols = ['number','type','duration','deviceName','date']
+const defaultColsTranslated = defaultCols.map((key) => {
+  return {
+    key: key,
+    label: translateTableKey(key as keyof CallFormatted),
+    sortable: true
+  }
+})
+
 const callsStore = useCallsStore();
+const q = ref('')
+const length = ref(props.lengthMenu[0])
+const page = ref(1)
 
 const computedCalls = computed(() => {
+
+  let calls = []
   if (props.showUnanswered) {
-    return filterUnanswered(callsStore.getCallsInRange);
+    calls = filterUnanswered(callsStore.getCallsInRange);
+  }else{
+    calls =  callsStore.getCallsInRange
   }
-  return callsStore.getCallsInRange
+
+  if (!q.value) {
+    return calls
+  }
+  
+  return calls.filter((row) => {
+    return Object.values(row).some((value) => {
+      return String(value).toLowerCase().includes(q.value.toLowerCase())
+    })
+  })
+  
 });
+
+const displayedCalls = computed(()=>{
+  return computedCalls.value.slice((page.value - 1) * length.value, (page.value) * length.value)
+})
 
 const computedCols = computed(() => {
   if (computedCalls.value && computedCalls.value.length > 0) {
-    return Object.keys(computedCalls.value[0]).map((key) => {
-      return {
-        data: key,
-        title: translateTableKey(key as keyof CallFormatted),
-        visible: key != "id",
-      };
+    const filteredKeys = Object.keys(computedCalls.value[0]).filter((key) => key !== "id");
+    return filteredKeys.map((key) => {
+        const column = {
+            [key]: undefined,
+            label: translateTableKey(key as keyof CallFormatted),
+            key: key,
+            sortable: true
+          };
+  
+          if (key == "date") {
+            column.direction = 'asc';
+          }
+  
+          return column;
     });
   }
 });
+
+watch([q,length],()=>{
+  page.value = 1
+})
+
 </script>
 
 <style>
-@import "datatables.net-dt";
 
-.datatable {
-  @apply w-full overflow-y-auto;
-}
 </style>
