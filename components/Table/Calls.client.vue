@@ -9,7 +9,7 @@
   <div>
     <div class="flex gap-2.5 flex-wrap justify-between px-3">
       <div class="flex items-center gap-1.5">
-        <span class="text-sm leading-5">Rows per page:</span>
+        <span class="text-sm leading-5 text-gray-500 dark:text-gray-400">Wyświetl:</span>
         <USelect v-model.number="length" :options="lengthMenu" class="w-20" />
       </div>
       <UInput v-model="q" placeholder="Szukaj..." class="w-full sm:max-w-[250px]" />
@@ -19,7 +19,8 @@
       :columns="computedCols ? computedCols : defaultColsTranslated"
       :sort="{ column: 'date', direction: 'desc' }"
       :loading="pending"
-      
+      :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'Brak połączeń.' }"
+      :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Ładowanie...' }"
     >
 
       <template #type-data="{ row }">
