@@ -6,7 +6,7 @@ const HEAD_TO_TRANSLATION_KEY: Mapping = {
     id: 'ID',
     date: 'Data',
     deviceName: 'Nazwa urządzenia',
-    duration: 'Czas połączenia [s]',
+    duration: 'Czas połączenia',
     number: 'Numer',
     type: 'Typ'
   }

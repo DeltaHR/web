@@ -6,11 +6,7 @@
     {{ title }}
   </h2>
 
-  <UTable v-if="computedCalls.length == 0" :columns="defaultColsTranslated" :loading="pending">
-
-  </UTable>
-
-  <div v-else>
+  <div>
     <div class="flex gap-2.5 flex-wrap justify-between px-3">
       <div class="flex items-center gap-1.5">
         <span class="text-sm leading-5">Rows per page:</span>
@@ -20,7 +16,7 @@
     </div>
     <UTable
       :rows="displayedCalls"
-      :columns="computedCols"
+      :columns="computedCols ? computedCols : defaultColsTranslated"
       :sort="{ column: 'date', direction: 'desc' }"
       :loading="pending"
       
