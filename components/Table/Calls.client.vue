@@ -71,6 +71,7 @@ const callsStore = useCallsStore();
 const q = ref('')
 const length = ref(props.lengthMenu[0])
 const page = ref(1)
+const showDocId = useState('showDocId')
 
 const computedCalls = computed(() => {
 
@@ -99,7 +100,7 @@ const displayedCalls = computed(()=>{
 
 const computedCols = computed(() => {
   if (computedCalls.value && computedCalls.value.length > 0) {
-    const filteredKeys = Object.keys(computedCalls.value[0]).filter((key) => key !== "id");
+    const filteredKeys = Object.keys(computedCalls.value[0]).filter((key) => showDocId.value || key !== "id");
     return filteredKeys.map((key) => {
         const column = {
             [key]: undefined,

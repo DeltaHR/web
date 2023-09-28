@@ -12,11 +12,9 @@ import { useCallsStore } from "~/stores/callsStore";
 import { collection, query, where, limit } from "firebase/firestore";
 
 const callsStore = useCallsStore()
-
 const initialLoading = ref(true)
 const loadedOnce = ref(false)
 const updateIndicator = useState('autoupdate',() => false)
-
 
 const callsQuery = computed(()=>{
   return query(

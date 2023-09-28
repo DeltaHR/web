@@ -1,5 +1,5 @@
 <template>
-    <div class="text-slate-200">
+    <div class="text-slate-200 mb-5">
     <div class="flex">
       <svg class="shrink-0 ml-1 md:ml-1.5 mr-3 md:mr-[26px] fill-slate-200" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
         <path d="M0 0h24v24H0z" fill="none" />
@@ -11,7 +11,7 @@
     </div>
 
     <div class="collapsed-hidden">
-        <VueDatePicker v-model="dateRange" :clearable="false" range :partial-range="false" dark  />
+        <VueDatePicker v-model="dateRange" :clearable="false" range :partial-range="false" dark select-text="Wybierz" cancel-text="Anuluj"  />
     </div>
     <div class="collapsed-hidden border-b border-slate-800 mt-5"></div>
   </div>
@@ -39,7 +39,7 @@ const {dateRange} = storeToRefs(useCallsStore())
 }
 
 .dp__action_row .dp__selection_preview{
-  @apply overflow-visible w-1/2 shrink text-clip mb-2 whitespace-normal
+  @apply mb-2 whitespace-normal
 }
 
 .dp__action_button{
