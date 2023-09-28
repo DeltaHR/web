@@ -17,7 +17,6 @@
     <UTable
       :rows="displayedCalls"
       :columns="computedCols ? computedCols : defaultColsTranslated"
-      :sort="{ column: 'date', direction: 'desc' }"
       :loading="pending"
       :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'Brak połączeń.' }"
       :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Ładowanie...' }"
@@ -110,7 +109,7 @@ const computedCols = computed(() => {
           };
   
           if (key == "date") {
-            column.direction = 'asc';
+            column.direction = 'desc';
           }
   
           return column;
