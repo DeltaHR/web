@@ -3,8 +3,8 @@ export default defineNuxtConfig({
   ssr: false,
   modules: [
     "nuxt-vuefire",
-    '@nuxtjs/tailwindcss',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@nuxt/ui'
   ],
   vuefire: {
     auth: true,
@@ -23,5 +23,8 @@ export default defineNuxtConfig({
     tsConfig: {
       "include": [ "types/*.d.ts" ]
     }
+  },
+  colorMode: {
+    preference: 'light'
   }
 });

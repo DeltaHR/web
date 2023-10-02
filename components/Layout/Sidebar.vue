@@ -10,6 +10,12 @@
         <UserInfo class="text-white transition-all duration-500" :class="[isCollapsed ? 'mb-5 md:mb-2' : 'mb-5']" />
       </div>
       <CommonDateRange />
+      <div class="collapsed-hidden border-b border-slate-800  pb-5 mb-5">
+        <div class="flex gap-2 items-center">
+          <UToggle v-model="showDocId" style="dark" class="dark bg-slate-600 aria-checked:bg-blue-300 transition duration-200" />
+          <span class="text-slate-200">Pokaż kolumnę z ID dokumentu w bazie danych</span>  
+        </div>
+      </div>
       <div class="collapsed-hidden mt-auto border-t border-slate-800 pt-5 mb-5">
         <UserLogoutButton class="text-white" />
       </div>
@@ -38,6 +44,7 @@
 
 <script setup lang="ts">
 const isCollapsed = ref(false);
+const showDocId = useState('showDocId',() => false)
 
 onMounted(()=>{
     if (window.innerWidth < 768) {

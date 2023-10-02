@@ -4,6 +4,7 @@ export { Call, CallFormatted };
 
 declare global {
   interface Call {
+    nr?: number,
     id: string;
     deviceName: string;
     number: number;
@@ -21,6 +22,7 @@ declare global {
     calls: CallFormatted[];
     callsRaw: Call[];
     dateRange: [Date,Date]
+    enterDate: Date
   }
 
 }

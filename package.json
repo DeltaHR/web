@@ -12,12 +12,12 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@nuxtjs/tailwindcss": "^6.8.0",
     "@types/node": "^18",
     "nuxt": "^3.6.2"
   },
   "dependencies": {
     "@firebase/app-types": "^0.9.0",
+    "@nuxt/ui": "^2.8.1",
     "@pinia/nuxt": "^0.4.11",
     "@vuepic/vue-datepicker": "^5.4.0",
     "@vueuse/nuxt": "^10.2.1",
