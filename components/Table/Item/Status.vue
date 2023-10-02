@@ -36,8 +36,8 @@
       </svg>
     </span>
     <span
-      class="ml-3 capitalize"
-      :class="[value === 'nieodebrane' ? 'text-red-600' : 'text-black']"
+      class="ml-3 capitalize "
+      :class="[value === 'nieodebrane' ? 'text-red-600' : 'text-gray-500 dark:text-gray-400']"
       >{{ value }}</span
     >
   </div>
