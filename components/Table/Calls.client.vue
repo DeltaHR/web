@@ -11,12 +11,14 @@
       <div class="flex items-center gap-1.5">
         <span class="text-sm leading-5 text-gray-500 dark:text-gray-400">Wyświetl:</span>
         <USelect v-model.number="length" :options="lengthMenu" class="w-20" />
+        <span class="ml-5 text-sm leading-5 text-gray-500 dark:text-gray-400">Kolumny:</span>
+        <USelectMenu v-model="selectedColumns" by="label" :options="computedCols.filter(col=>col.key != 'nr')" multiple placeholder="Kolumny" />
       </div>
       <UInput v-model="q" placeholder="Szukaj..." class="w-full sm:max-w-[250px]" />
     </div>
     <UTable
       :rows="displayedCalls"
-      :columns="computedCols ? computedCols : defaultColsTranslated"
+      :columns="computedCols ? selectedColumnsSorted : defaultColsTranslated"
       :loading="pending"
       :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'Brak połączeń.' }"
       :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Ładowanie...' }"
@@ -82,7 +84,6 @@ const callsStore = useCallsStore();
 const q = ref('')
 const length = ref(props.lengthMenu[0])
 const page = ref(1)
-const showDocId = useState('showDocId')
 
 const computedCalls = computed(() => {
 
@@ -116,8 +117,8 @@ const displayedCalls = computed(()=>{
 
 const computedCols = computed(() => {
   if (computedCalls.value && computedCalls.value.length > 0) {
-    const filteredKeys = Object.keys(computedCalls.value[0]).filter((key) => showDocId.value || key !== "id");
-    return filteredKeys.map((key) => {
+    const columnKeys = Object.keys(computedCalls.value[0]);
+    return columnKeys.map((key) => {
         const column = {
             [key]: undefined,
             label: translateTableKey(key as keyof CallFormatted),
@@ -132,10 +133,29 @@ const computedCols = computed(() => {
           return column;
     });
   }
+
+  return []
 });
+
+const selectedColumns = ref([...defaultColsTranslated])
+const selectedColumnsSorted = computed(()=>{
+  return selectedColumns.value.sort((a, b) => {
+    const indexA = defaultColsTranslated.findIndex(item => item.key === a.key);
+    const indexB = defaultColsTranslated.findIndex(item => item.key === b.key);
+    return indexA - indexB;
+  });
+})
 
 watch([q,length],()=>{
   page.value = 1
+})
+
+watch(computedCols,(newCols)=>{
+  if (newCols.length > 0) {
+    selectedColumns.value =  newCols.filter(col=>col.key !='id')
+  }else{
+    selectedColumns.value = defaultColsTranslated
+  }  
 })
 
 </script>

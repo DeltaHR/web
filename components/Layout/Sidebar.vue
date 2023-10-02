@@ -18,10 +18,6 @@
         <h3 class="collapsed-hidden text-base md:text-lg mb-2">Ustawienia</h3></div>
       <div class="collapsed-hidden border-t border-slate-800 pt-5 overflow-hidden max-h-72 !transition-all !duration-500" :class="{'!max-h-0':isCollapsed}">
         <div class="flex gap-2 items-center mb-5">
-          <UToggle v-model="showDocId" class=" bg-slate-600 aria-checked:bg-blue-300 transition duration-200" />
-          <span class="text-slate-200">Pokaż kolumnę z ID dokumentu w bazie danych</span>  
-        </div>
-        <div class="flex gap-2 items-center mb-5">
           <UToggle v-model="isDark" class=" bg-slate-600 aria-checked:bg-blue-300 transition duration-200" />
           <span class="text-slate-200">Tryb ciemny</span>  
         </div>
@@ -54,8 +50,6 @@
 
 <script setup lang="ts">
 const isCollapsed = ref(false);
-const showDocId = useState('showDocId',() => false)
-
 const colorMode = useColorMode()
 const isDark = computed({
   get () {
