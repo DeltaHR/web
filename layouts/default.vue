@@ -3,7 +3,7 @@
         <LayoutLoadingScreen v-if="!user" />
         <div v-else class="flex flex-row h-screen">
             <LayoutSidebar/>
-            <div class="w-full h-full overflow-auto bg-white">
+            <div class="w-full h-full overflow-auto dark:bg-slate-950 bg-white">
                 <LayoutNavbar />
                 <main class="pl-14 md:pl-0">
                     <slot />

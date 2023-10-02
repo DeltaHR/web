@@ -24,7 +24,4 @@ export default defineNuxtConfig({
       "include": [ "types/*.d.ts" ]
     }
   },
-  colorMode: {
-    preference: 'light'
-  }
 });

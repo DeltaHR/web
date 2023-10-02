@@ -21,6 +21,7 @@ const callsQuery = computed(()=>{
     callsRef,
     where('date','>',callsStore.dateRange[0]),
     where('date','<',callsStore.dateRange[1]),
+    limit(50)
     )
 })
  

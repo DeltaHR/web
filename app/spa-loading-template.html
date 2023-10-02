@@ -1,10 +1,29 @@
 <div class="loading-screen">
-  <img class="loader-image" height="80" width="200" src="/images/deltaHR-logo.png" />
+  <img class="loader-image img-light" height="80" width="200" src="/images/deltaHR-logo-white.png" />
+  <img class="loader-image img-dark" height="80" width="200" src="/images/deltaHR-logo.png" />
 </div>
 <style>
   html,body {
     margin: 0;
     padding: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body{
+      background: rgb(2,6,23);
+    }
+    .img-dark{
+      display: none;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    body{
+      background: #fff;
+    }
+    .img-light{
+      display: none
+    }
   }
 
   .loading-screen {

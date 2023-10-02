@@ -5,10 +5,12 @@
 <script setup lang="ts">
 import { getAuth, signOut } from "firebase/auth";
 
+const router = useRouter()
+
 function logoutUser() {
   const auth = getAuth();
   signOut(auth);
 
-  (window as Window).location = "https://calllog.deltahr.pl/";
+  router.push({path:'/'})
 }
 </script>
