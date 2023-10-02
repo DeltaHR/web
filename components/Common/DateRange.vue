@@ -38,6 +38,10 @@ const {dateRange} = storeToRefs(useCallsStore())
   @apply bg-slate-800/70 backdrop-blur-md
 }
 
+.dp__action_row{
+  @apply !block text-center
+}
+
 .dp__action_row .dp__selection_preview{
   @apply mb-2 whitespace-normal
 }

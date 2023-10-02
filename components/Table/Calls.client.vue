@@ -26,10 +26,14 @@
         <TableItemStatus :value="(row.type)"/>
       </template>
       <template #duration-data="{ row }">
-        {{ formatTime(row.duration) }}
+        <span v-if="row.duration">
+          {{ formatTime(row.duration) }}
+        </span>
       </template>
       <template #date-data="{ row }">
-        {{ row.date.toLocaleString() }}
+        <span v-if="row.date">
+          {{ row.date.toLocaleString() }}
+        </span>
       </template>
 
     </UTable>
@@ -82,6 +86,11 @@ const computedCalls = computed(() => {
     calls =  callsStore.getCallsInRange
   }
 
+  for (let index = 0; index < calls.length; index++) {
+    let call = calls[index]
+    calls[index] = {nr: calls.length - index ,...call}
+  }
+
   if (!q.value) {
     return calls
   }
@@ -106,9 +115,9 @@ const computedCols = computed(() => {
             [key]: undefined,
             label: translateTableKey(key as keyof CallFormatted),
             key: key,
-            sortable: true
+            sortable: key !== "nr"
           };
-  
+
           if (key == "date") {
             column.direction = 'desc';
           }

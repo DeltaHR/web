@@ -36,7 +36,6 @@ watch(calls,(newCalls) => {
   const newDocuments = newCalls.filter(obj => !idSet.has(obj.id));
   
   callsStore.addCalls(newDocuments as Call[])
-
   if (loadedOnce.value === false) {
     console.log('update');  
     loadedOnce.value = true
