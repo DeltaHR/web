@@ -7,7 +7,8 @@ export const useCallsStore = defineStore('calls',{
         dateRange: [
             new Date(new Date().setDate(new Date().getDate() - 7)),
             new Date()
-        ]
+        ],
+        enterDate: new Date()
     }),
     getters: {
         getCalls(state){

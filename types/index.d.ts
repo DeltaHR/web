@@ -22,6 +22,7 @@ declare global {
     calls: CallFormatted[];
     callsRaw: Call[];
     dateRange: [Date,Date]
+    enterDate: Date
   }
 
 }

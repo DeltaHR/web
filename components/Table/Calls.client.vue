@@ -20,8 +20,15 @@
       :loading="pending"
       :empty-state="{ icon: 'i-heroicons-circle-stack-20-solid', label: 'Brak połączeń.' }"
       :loading-state="{ icon: 'i-heroicons-arrow-path-20-solid', label: 'Ładowanie...' }"
+      :ui="{td:{base:'whitespace-nowrap relative'}}"
     >
 
+      <template #nr-data="{ row }" :class="'!p-0'">
+        <div >
+          <span v-show="callsStore.enterDate < row.date" class="absolute left-0 inset-y-0 w-0.5 bg-blue-500"></span>
+          {{ row.nr }}
+        </div>
+      </template>
       <template #type-data="{ row }">
         <TableItemStatus :value="(row.type)"/>
       </template>
