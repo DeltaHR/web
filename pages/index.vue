@@ -38,7 +38,6 @@ watch(calls,(newCalls) => {
   
   callsStore.addCalls(newDocuments as Call[])
   if (loadedOnce.value === false) {
-    console.log('update');  
     loadedOnce.value = true
     return
   }
