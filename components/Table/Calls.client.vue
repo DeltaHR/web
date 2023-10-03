@@ -7,7 +7,7 @@
   </h2>
 
   <div>
-    <div class="flex gap-2.5 flex-wrap justify-between px-3 pt-5 min-[800px]:pt-8 sticky top-[97px] dark:bg-slate-950 bg-white z-20">
+    <div class="flex gap-2.5 flex-wrap justify-between px-3 pt-5 lg:pt-8 sticky top-[97px] dark:bg-slate-950 bg-white z-20">
       <div class="flex items-center gap-2.5 flex-wrap">
         <div class="flex gap-1.5 items-center w-full min-[490px]:w-auto">
           <span class="text-sm leading-5 text-gray-500 dark:text-gray-400">Wyświetl:</span>
@@ -33,7 +33,7 @@
           </USelectMenu>
         </div>
       </div>
-      <UInput v-model="q" placeholder="Szukaj..." class="w-full min-[800px]:max-w-[250px]" />
+      <UInput v-model="q" placeholder="Szukaj..." class="w-full lg:max-w-[250px]" />
     </div>
     <UTable
       :rows="displayedCalls"
@@ -46,7 +46,7 @@
           base: 'whitespace-nowrap relative',
         },
         thead:
-          'sticky top-[233px] min-[490px]:top-[191px] min-[800px]:top-[161px] dark:bg-slate-950 bg-white z-10 dark:shadow-gray-800 shadow-gray-200 shadow-[0_0.5px_0_0]',
+          'sticky top-[233px] min-[490px]:top-[191px] lg:top-[161px] dark:bg-slate-950 bg-white z-10 dark:shadow-gray-800 shadow-gray-200 shadow-[0_0.5px_0_0]',
         wrapper: 'relative !overflow-visible',
         tbody: 'overflow-x-auto',
       }"
