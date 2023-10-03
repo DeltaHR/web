@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute md:static top-14 bottom-0 z-30 shrink-0 bg-slate-900 py-5 overflow-x-hidden transition-all duration-500"
+    class="absolute md:static top-14 bottom-0 z-40 shrink-0 bg-slate-900 py-5 overflow-x-hidden transition-all duration-500"
     :class="[isCollapsed ? 'collapsed w-14 md:w-16 md:pt-2' : 'w-72 md:pt-[84px]']"
     @click.native="isCollapsed ? toggleCollapse() : null"
 

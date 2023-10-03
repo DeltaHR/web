@@ -4,7 +4,8 @@ export default defineNuxtConfig({
   modules: [
     "nuxt-vuefire",
     '@pinia/nuxt',
-    '@nuxt/ui'
+    '@nuxt/ui',
+    '@vueuse/nuxt'
   ],
   vuefire: {
     auth: true,

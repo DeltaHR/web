@@ -13,5 +13,5 @@ const HEAD_TO_TRANSLATION_KEY: Mapping = {
   }
   
 export default function translateTableKey(key: TableHeadKey){
-    return HEAD_TO_TRANSLATION_KEY[key]
-    }
+    return HEAD_TO_TRANSLATION_KEY[key] ?? ''
+  }
