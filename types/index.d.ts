@@ -4,7 +4,6 @@ export { Call, CallFormatted };
 
 declare global {
   interface Call {
-    nr?: number,
     id: string;
     deviceName: string;
     number: number;

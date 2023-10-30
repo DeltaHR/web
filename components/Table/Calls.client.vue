@@ -51,10 +51,10 @@
         tbody: 'overflow-x-auto',
       }"
     >
-      <template #nr-data="{ row }" :class="'!p-0'">
+      <template #nr-data="{ row,index }" :class="'!p-0'">
         <div>
           <span v-show="callsStore.enterDate < row.date" class="absolute left-0 inset-y-0 w-0.5 bg-blue-500"></span>
-          {{ row.nr }}
+          {{ computedCalls.length - (page - 1) * length - index }}
         </div>
       </template>
       <template #type-data="{ row }">
@@ -80,7 +80,6 @@
 <script setup lang="ts">
 import { useCallsStore } from "~/stores/callsStore";
 import translateTableKey from "~/utils/translateTableKey";
-import numerateCalls from "~/utils/numerateCalls";
 
 const props = withDefaults(
   defineProps<{
@@ -92,21 +91,21 @@ const props = withDefaults(
   {
     showUnanswered: false,
     pending: true,
-    lengthMenu: () => [50, 100],
+    lengthMenu: () => [50, 100, 200],
   }
 );
 
-const defaultCols = ["number", "type", "duration", "deviceName", "date"];
+const defaultCols = ["nr","number", "type", "duration", "deviceName", "date"];
 const defaultColsTranslated = defaultCols.map((key) => {
   return {
     key: key,
     label: translateTableKey(key as keyof CallFormatted),
-    sortable: true,
+    sortable: key !== 'nr',
   };
 });
 const callsStore = useCallsStore();
 const q = ref("");
-const length = ref(props.lengthMenu[0]);
+const length = ref(200);
 const page = ref(1);
 const { width } = useWindowSize();
 
@@ -117,8 +116,6 @@ const computedCalls = computed(() => {
   } else {
     calls = callsStore.getCallsInRange;
   }
-
-  numerateCalls(calls)
 
   if (!q.value) {
     return calls;
@@ -138,12 +135,12 @@ const displayedCalls = computed(() => {
 const computedCols = computed(() => {
   if (computedCalls.value && computedCalls.value.length > 0) {
     const columnKeys = Object.keys(computedCalls.value[0]);
-    return columnKeys.map((key) => {
+    const columnsData = columnKeys.map((key) => {
       const column = {
         [key]: undefined,
         label: translateTableKey(key as keyof CallFormatted),
         key: key,
-        sortable: key !== "nr",
+        sortable: true,
       };
 
       if (key == "date") {
@@ -151,7 +148,17 @@ const computedCols = computed(() => {
       }
 
       return column;
+    })
+
+    columnsData.unshift(
+      {
+        ['nr']: undefined,
+        label: '',
+        key: 'nr',
+        sortable: false
     });
+
+    return columnsData
   }
 
   return [];

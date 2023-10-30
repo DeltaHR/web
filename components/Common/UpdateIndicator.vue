@@ -1,11 +1,11 @@
 <template>
     <Transition>
         <div v-if="updateIndicator" class="flex items-center gap-1">
-            <p class="text-slate-800">
+            <p class="text-slate-800 dark:text-slate-200">
                 Zaktualizowano połączenia
             </p>
             <svg class="update-icon" width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle class="stroke-slate-900/20" cx="10" cy="10" r="9.5"/>
+                <circle class="stroke-slate-900/20 dark:stroke-slate-200/20" cx="10" cy="10" r="9.5"/>
                 <path class="stroke-blue-400" d="M6 9.5L9.516667 13.5L15.5 7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>

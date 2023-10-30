@@ -6,7 +6,7 @@ export const useCallsStore = defineStore('calls',{
         callsRaw: [],
         dateRange: [
             new Date(new Date().setDate(new Date().getDate() - 7)),
-            new Date()
+            new Date(new Date().setDate(new Date().getDate() + 7))
         ],
         enterDate: new Date()
     }),

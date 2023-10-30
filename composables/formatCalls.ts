@@ -1,6 +1,6 @@
 export default function (data: Call[]): CallFormatted[] {
   let formattedData: CallFormatted[] = [];
-  data.forEach((call) => {
+  data.forEach((call) => {    
     let formattedCall: CallFormatted = {
       id: call.id,
       number: call.number,
@@ -9,7 +9,7 @@ export default function (data: Call[]): CallFormatted[] {
           ? "przychodzące"
           : call.type == 2
           ? "wychodzące"
-          : call.type == 3
+          : call.type == 3 || call.type == 4
           ? "nieodebrane"
           : "nieznane",
       duration: call.duration,
