@@ -11,7 +11,7 @@
       <div class="flex items-center gap-2.5 flex-wrap">
         <div class="flex gap-1.5 items-center w-full min-[490px]:w-auto">
           <span class="text-sm leading-5 text-gray-500 dark:text-gray-400">Wyświetl:</span>
-          <USelect v-model.number="length" :options="lengthMenu" class="w-20" />
+          <USelect v-model="length" :options="lengthMenu" class="w-20" />
         </div>
         <div class="flex gap-1.5 items-center w-full min-[490px]:w-auto">
           <span class="text-sm leading-5 text-gray-500 dark:text-gray-400">Kolumny:</span>
@@ -54,7 +54,7 @@
       <template #nr-data="{ row,index }" :class="'!p-0'">
         <div>
           <span v-show="callsStore.enterDate < row.date" class="absolute left-0 inset-y-0 w-0.5 bg-blue-500"></span>
-          {{ computedCalls.length - (page - 1) * length - index }}
+          {{ computedCalls.length - (page - 1) * parseInt(length) - index }}
         </div>
       </template>
       <template #type-data="{ row }">
@@ -73,7 +73,7 @@
     </UTable>
   </div>
   <div class="pt-5 flex justify-end">
-    <UPagination v-model="page" :page-count="length" :total="computedCalls.length" />
+    <UPagination v-model="page" :page-count="parseInt(length)" :total="computedCalls.length" />
   </div>
 </template>
 
@@ -105,7 +105,7 @@ const defaultColsTranslated = defaultCols.map((key) => {
 });
 const callsStore = useCallsStore();
 const q = ref("");
-const length = ref(200);
+const length = ref('200');
 const page = ref(1);
 const { width } = useWindowSize();
 
@@ -123,13 +123,16 @@ const computedCalls = computed(() => {
 
   return calls.filter((row) => {
     return Object.values(row).some((value) => {
-      return String(value).toLowerCase().includes(q.value.toLowerCase());
+      if (value instanceof Date) {
+        return value.toLocaleString().includes(q.value);
+      }
+      return String(value).toLowerCase().includes(q.value.toLowerCase());      
     });
   });
 });
 
 const displayedCalls = computed(() => {
-  return computedCalls.value.slice((page.value - 1) * length.value, page.value * length.value);
+  return computedCalls.value.slice((page.value - 1) * parseInt(length.value), page.value * parseInt(length.value));
 });
 
 const computedCols = computed(() => {
