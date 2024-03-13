@@ -5,7 +5,10 @@
         <div class="flex items-center justify-between h-14">
             <img v-if="isDark" height="50" width="150" src="/images/deltaHR-logo-white.png" referrerpolicy="no-referrer">
             <img v-else height="50" width="150" src="/images/deltaHR-logo.png" referrerpolicy="no-referrer">
-            <CommonUpdateIndicator />      
+            <div class="flex items-center gap-5">
+                <CommonErrorIndicator />
+                <CommonUpdateIndicator />  
+            </div>
         </div>
     </div>
 </div>
