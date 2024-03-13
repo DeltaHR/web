@@ -54,7 +54,7 @@
       <template #nr-data="{ row,index }" :class="'!p-0'">
         <div>
           <span v-show="callsStore.enterDate < row.date" class="absolute left-0 inset-y-0 w-0.5 bg-blue-500"></span>
-          {{ computedCalls.length - (page - 1) * length - index }}
+          {{ computedCalls.length - (page - 1) * parseInt(length) - index }}
         </div>
       </template>
       <template #type-data="{ row }">
@@ -73,7 +73,7 @@
     </UTable>
   </div>
   <div class="pt-5 flex justify-end">
-    <UPagination v-model="page" :page-count="length" :total="computedCalls.length" />
+    <UPagination v-model="page" :page-count="parseInt(length)" :total="computedCalls.length" />
   </div>
 </template>
 
@@ -105,7 +105,7 @@ const defaultColsTranslated = defaultCols.map((key) => {
 });
 const callsStore = useCallsStore();
 const q = ref("");
-const length = ref(200);
+const length = ref('200');
 const page = ref(1);
 const { width } = useWindowSize();
 
@@ -132,7 +132,7 @@ const computedCalls = computed(() => {
 });
 
 const displayedCalls = computed(() => {
-  return computedCalls.value.slice((page.value - 1) * length.value, page.value * length.value);
+  return computedCalls.value.slice((page.value - 1) * parseInt(length.value), page.value * parseInt(length.value));
 });
 
 const computedCols = computed(() => {
