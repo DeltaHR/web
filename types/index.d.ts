@@ -1,4 +1,4 @@
-import { Timestamp } from "firebase/firestore";
+import { FirestoreError, Timestamp } from "firebase/firestore";
 
 export { Call, CallFormatted };
 
@@ -21,7 +21,8 @@ declare global {
     calls: CallFormatted[];
     callsRaw: Call[];
     dateRange: [Date,Date]
-    enterDate: Date
+    enterDate: Date,
+    error: undefined|FirestoreError
   }
 
 }

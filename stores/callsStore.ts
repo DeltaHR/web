@@ -8,7 +8,8 @@ export const useCallsStore = defineStore('calls',{
             new Date(new Date().setDate(new Date().getDate() - 14)),
             new Date(new Date().setHours(23,59,59,999))
         ],
-        enterDate: new Date()
+        enterDate: new Date(),
+        error: undefined
     }),
     getters: {
         getCalls(state){
