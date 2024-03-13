@@ -17,11 +17,21 @@ const loadedOnce = ref(false)
 const updateIndicator = useState('autoupdate',() => false)
 
 const callsQuery = computed(()=>{
-  return query(
+  if (process.dev) {
+    return query(
     callsRef,
     where('date','>',callsStore.dateRange[0]),
     where('date','<',callsStore.dateRange[1]),
-    )
+    limit(100))
+
+  }else{
+    return query(
+      callsRef,
+      where('date','>',callsStore.dateRange[0]),
+      where('date','<',callsStore.dateRange[1]),
+      )
+  }
+
 })
  
 const db = useFirestore();
