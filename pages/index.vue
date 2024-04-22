@@ -1,9 +1,9 @@
 <template>
   <div class="w-full lg:container mx-auto px-5 md:px-10 mb-20">
-    <TableCalls :title="'Nieodebrane'" :show-unanswered="true" :pending="(pending || initialLoading) && !error" :length-menu="[25,50,100,200]" />
+    <TableCalls :title="'Nieodebrane'" :show-unanswered="true" :pending="(pending || initialLoading) && !error" :length-menu="[25,50,100,200,1000,2000,5000]" />
   </div>
   <div class="w-full lg:container mx-auto px-5 md:px-10 mb-20">
-    <TableCalls :title="'Wszystkie połączenia'" :pending="(pending || initialLoading) && !error" :length-menu="[25,50,100,200]" />
+    <TableCalls :title="'Wszystkie połączenia'" :pending="(pending || initialLoading) && !error" :length-menu="[25,50,100,200,1000,2000,5000]" />
   </div>
 </template>
 
