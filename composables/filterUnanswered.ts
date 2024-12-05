@@ -8,7 +8,7 @@ export default function (data: CallFormatted[]): CallFormatted[] {
 
   for (const number of numbers) {
     const latest = data.find((call) => {
-      return call.number === number;
+      return call.number === number || `+48${call.number}` === number || call.number === `+48${number}`;
     });
     if (latest?.type == "nieodebrane") {
       filteredArray.push(latest);
