@@ -1,4 +1,4 @@
-import { getAuth, signInWithRedirect, GoogleAuthProvider, User } from "firebase/auth";
+import { getAuth, signInWithRedirect,signInWithPopup, GoogleAuthProvider, User } from "firebase/auth";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
   const user = await getCurrentUser() as User
@@ -7,6 +7,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
 
-    signInWithRedirect(auth, provider);
+    if (process.dev) {
+      console.log('test')
+      await signInWithPopup(auth, provider)
+    }else{
+      signInWithRedirect(auth, provider);
+    }
   }
 });
