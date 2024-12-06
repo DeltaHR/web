@@ -1,17 +1,16 @@
 export default function (data: CallFormatted[]): CallFormatted[] {
   let filteredArray: CallFormatted[] = [];
-  data.sort((a, b) => {
-    return b.date.getTime() - a.date.getTime();
-  });
+  let seenNumbers = new Set<string>();
 
-  let numbers = new Set(Object.values(data).map((call) => call.number));
+  data.sort((a, b) => b.date.getTime() - a.date.getTime());
 
-  for (const number of numbers) {
-    const latest = data.find((call) => {
-      return call.number === number || `+48${call.number}` === number || call.number === `+48${number}`;
-    });
-    if (latest?.type == "nieodebrane") {
-      filteredArray.push(latest);
+  for (const call of data) {
+    if (!seenNumbers.has(call.number)) {
+      seenNumbers.add(call.number);
+
+      if (call.type === "nieodebrane") {
+        filteredArray.push(call);
+      }
     }
   }
 

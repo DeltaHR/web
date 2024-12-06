@@ -6,7 +6,7 @@ declare global {
   interface Call {
     id: string;
     deviceName: string;
-    number: number;
+    number: string;
     type: 1 | 2 | 3 | 4;
     duration: number;
     date: Timestamp;
