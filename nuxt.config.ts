@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     auth: true,
     config: {
       apiKey: "AIzaSyBMKBwPbOIX18UZ53B622VgLk4aRmBl1q0",
-      authDomain: "calllogadas2-9a345.firebaseapp.com",
+      authDomain: "calllog.deltahr.pl",
       databaseURL:
         "https://calllogadas2-9a345-default-rtdb.europe-west1.firebasedatabase.app",
       projectId: "calllogadas2-9a345",
